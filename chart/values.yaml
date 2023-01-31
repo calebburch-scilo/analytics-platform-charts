@@ -1,0 +1,12 @@
+region: us-east-1
+
+externalDns:
+  repoUrl: https://github.com/bitnami/charts/
+  path: bitname/external-dns
+  targetRevision: main
+  enable: true
+  namespace: kube-system
+  createNamespace: false
+  serviceAccountName: ""
+  zoneIdFilter: ""
+  values: {}
