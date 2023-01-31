@@ -14,8 +14,7 @@ spec:
     targetRevision: {{ .Values.externalDns.targetRevision }}
     helm:
       values: |
-        external-dns:
-        {{- toYaml .Values.externalDns.values | nindent 10 }}
+        {{- toYaml .Values.externalDns.values | nindent 8 }}
       parameters:
       - name: external-dns.aws.region
         value: {{ .Values.region }}

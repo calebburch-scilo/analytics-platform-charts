@@ -2,7 +2,7 @@ region: us-east-1
 
 externalDns:
   repoUrl: https://github.com/bitnami/charts/
-  path: bitname/external-dns
+  path: bitnami/external-dns
   targetRevision: main
   enable: true
   namespace: kube-system
