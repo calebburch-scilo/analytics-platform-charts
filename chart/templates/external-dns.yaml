@@ -16,17 +16,17 @@ spec:
       values: |
         {{- toYaml .Values.externalDns.values | nindent 8 }}
       parameters:
-      - name: external-dns.aws.region
+      - name: aws.region
         value: {{ .Values.region }}
-      - name: external-dns.serviceAccount.name
+      - name: serviceAccount.name
         value: {{ .Values.externalDns.serviceAccountName }}
-      - name: external-dns.zoneIdFilters[0]
+      - name: zoneIdFilters[0]
         value: {{ .Values.externalDns.zoneIdFilter }}
-      - name: external-dns.interval
+      - name: interval
         value: {{ .Values.externalDns.interval }}
-      - name: external-dns.aws.credentials.accessKey	
+      - name: aws.credentials.accessKey	
         value: {{ .Values.externalDns.accessKey }}
-      - name: external-dns.aws.credentials.secretKey
+      - name: aws.credentials.secretKey
         value: {{ .Values.externalDns.secretKey }}
   destination:
     server: https://kubernetes.default.svc
