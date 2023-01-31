@@ -9,4 +9,7 @@ externalDns:
   createNamespace: false
   serviceAccountName: ""
   zoneIdFilter: ""
+  interval: "30m"
+  accessKey: ""
+  secretKey: ""
   values: {}
