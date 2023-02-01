@@ -1,0 +1,39 @@
+{{- if and (.Values.ingressNginx) (.Values.ingressNginx.enable) -}}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cluster-autoscaler
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: {{ .Values.ingressNginx.repoUrl }}
+    path: {{ .Values.ingressNginx.path }}
+    targetRevision: {{ .Values.ingressNginx.targetRevision }}
+    helm:
+      values: |
+        {{- toYaml .Values.ingressNginx.values | nindent 8 }}
+      parameters:
+      - name: awsRegion
+        value: {{ .Values.region }}
+      - name: "service.beta.kubernetes.io/aws-load-balancer-name"
+        value: {{ .Values.ingressNginx.loadbalancerName }}
+      - name: "service.beta.kubernetes.io/aws-load-balancer-cross-zone-load-balancing-enabled"
+        value: {{ .Values.loadbalancerCrossZoneEnabled }}
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: {{ .Values.ingressNginx.namespace }}
+  syncPolicy:
+    automated:
+      prune: true
+    syncOptions:
+      - CreateNamespace={{ .Values.ingressNginx.createNamespace }}
+    retry:
+      limit: 1
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 1m
+{{- end -}}
