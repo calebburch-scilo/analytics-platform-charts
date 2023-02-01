@@ -1,11 +1,12 @@
 region: us-east-1
+clusterName: ""
 
 externalDns:
+  enable: true
   repoUrl: https://github.com/bitnami/charts/
   path: bitnami/external-dns
   targetRevision: main
-  enable: true
-  namespace: kube-system
+  namespace: platform
   createNamespace: false
   serviceAccountName: ""
   zoneIdFilter: ""
@@ -13,3 +14,19 @@ externalDns:
   accessKey: ""
   secretKey: ""
   values: {}
+
+clusterAutoscaler:
+  enable: true
+  repoUrl: https://github.com/kubernetes/autoscaler
+  path: charts/cluster-autoscaler
+  targetRevision: cluster-autoscaler-chart-9.21.1
+  namespace: platform
+  createNamespace: false
+  serviceAccountName: "cluster-autoscaler-sa"
+  values: {
+    "expander" = "least-waste",
+    "skip-nodes-with-system-pods" = false,
+    "skip-nodes-with-local-storage" = false,
+    "balance-similar-node-groups" = false,
+    "aws-use-static-instance-list" = true
+  }
