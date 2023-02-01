@@ -24,9 +24,9 @@ clusterAutoscaler:
   createNamespace: false
   serviceAccountName: "cluster-autoscaler-sa"
   values: {
-    "expander" = "least-waste",
-    "skip-nodes-with-system-pods" = false,
-    "skip-nodes-with-local-storage" = false,
-    "balance-similar-node-groups" = false,
-    "aws-use-static-instance-list" = true
+    "expander": "least-waste"
+    "skip-nodes-with-system-pods": false
+    "skip-nodes-with-local-storage": false
+    "balance-similar-node-groups": false
+    "aws-use-static-instance-list": true
   }
