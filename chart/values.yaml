@@ -42,3 +42,5 @@ ingressNginx:
       service:
         external:
           enabled: false
+        internal:
+          enabled: true          
