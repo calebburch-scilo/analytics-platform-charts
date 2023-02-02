@@ -18,10 +18,6 @@ spec:
       parameters:
       - name: awsRegion
         value: {{ .Values.region }}
-      # - name: "service.beta.kubernetes.io/aws-load-balancer-name"
-      #   value: {{ .Values.ingressNginx.loadbalancerName }}
-      # - name: "service.beta.kubernetes.io/aws-load-balancer-cross-zone-load-balancing-enabled"
-      #   value: "{{ .Values.ingressNginx.loadbalancerCrossZoneEnabled }}"
   destination:
     server: https://kubernetes.default.svc
     namespace: {{ .Values.ingressNginx.namespace }}
