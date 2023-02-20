@@ -43,4 +43,6 @@ ingressNginx:
         external:
           enabled: false
         internal:
-          enabled: true          
+          enabled: true     
+      ingressClassResource:
+        default: true
