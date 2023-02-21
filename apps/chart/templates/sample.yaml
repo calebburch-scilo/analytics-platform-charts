@@ -1,0 +1,35 @@
+{{- if and (.Values.sample) (.Values.sample.enable) -}}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: sample
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: {{ .Values.sample.repoUrl }}
+    path: {{ .Values.sample.path }}
+    targetRevision: {{ .Values.sample.targetRevision }}
+    helm:
+      values: |
+        {{- toYaml .Values.sample.values | nindent 8 }}
+      parameters:
+      - name: awsRegion
+        value: {{ .Values.region }}
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: {{ .Values.sample.namespace }}
+  syncPolicy:
+    automated:
+      prune: true
+    syncOptions:
+      - CreateNamespace={{ .Values.sample.createNamespace }}
+    retry:
+      limit: 1
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 1m
+{{- end -}}
