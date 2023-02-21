@@ -18,6 +18,8 @@ spec:
       parameters:
       - name: awsRegion
         value: {{ .Values.region }}
+      - name: imageTag
+        value: {{ .Values.sample.imageTag }}
   destination:
     server: https://kubernetes.default.svc
     namespace: {{ .Values.sample.namespace }}

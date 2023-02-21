@@ -8,4 +8,5 @@ sample:
   targetRevision: main
   namespace: sample
   createNamespace: true
+  imageTag: latest
   values: {}
