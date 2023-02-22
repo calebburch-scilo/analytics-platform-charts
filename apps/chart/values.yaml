@@ -1,0 +1,12 @@
+region: us-east-1
+clusterName: ""
+
+sample:
+  enable: false
+  repoUrl: https://github.com/calebburch-scilo/sample-app1
+  path: chart
+  targetRevision: main
+  namespace: sample
+  createNamespace: true
+  imageTag: latest
+  values: {}
