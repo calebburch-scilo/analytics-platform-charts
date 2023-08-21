@@ -34,7 +34,7 @@ ingressNginx:
   enable: true
   repoUrl: https://github.com/kubernetes/ingress-nginx
   path: charts/ingress-nginx
-  targetRevision: controller-v1.5.1
+  targetRevision: controller-v1.8.1
   namespace: platform
   createNamespace: false
   values:
